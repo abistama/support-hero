@@ -1,0 +1,27 @@
+slack:
+  oauth:
+    client-id: "client-id"
+    client-secret: "secret"
+    bot-token: "bot-token"
+    redirect-uri: "https://bc7f-83-41-163-3.ngrok-free.app/slack/oauth"
+    signing-secret: "signing-secret"
+jira:
+  oauth:
+    client-id: "xxx"
+    client-secret: "xxx"
+    redirect-uri: "http://localhost:8080/callback"
+    authorization-uri: "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=#{clientId}&scope=write%3Ajira-work%20read%3Ajira-work&redirect_uri=#{redirectUri}k&state=#{state}&response_type=code&prompt=consent"
+smtp2go:
+  api-key: "api-key"
+  sender-email: "contact@stodhjalte.com"
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/supporthero
+    username: test
+    password: test
+    driver-class-name: org.postgresql.Driver
+
+langchain4j:
+  anthropic:
+    chat-model:
+      api-key: "lalala"

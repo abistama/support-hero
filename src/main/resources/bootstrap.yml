@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: support-hero
+  cloud:
+    config:
+      enabled: false

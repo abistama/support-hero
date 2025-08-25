@@ -1,0 +1,24 @@
+# fly.toml app configuration file generated for abistama-api on 2024-06-28T14:59:27+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'supporthero-api'
+primary_region = 'mad'
+
+[build]
+
+[env]
+  SPRING_PROFILES_ACTIVE = "production"
+
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  min_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1

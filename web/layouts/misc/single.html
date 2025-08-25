@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>Abistama — {{ .Title }}</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Abistama {{ .Title }}">
+    <meta name="keywords" content="abistama, {{ .Title }}, internal support, support, customer service, help desk, support solutions, efficient support, Slack support, Jira integration, internal help">
+    <meta name="robots" content="index, follow">
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://abistama.com">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Abistama — User support that doesn't suck!">
+	<meta property="og:description" content="User support that doesn't suck">
+	<meta property="og:image" content="https://abistama.com/images/og/og.png">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="abistama.com">
+	<meta property="twitter:url" content="https://abistama.com">
+	<meta name="twitter:title" content="Abistama — User support that doesn't suck!">
+	<meta name="twitter:description" content="User support that doesn't suck">
+	<meta name="twitter:image" content="https://abistama.com/images/og/og.png">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/images/favicon.ico">
+	<script defer data-domain="abistama.com" src="https://plausible.io/js/script.hash.outbound-links.js"></script>
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/swiper/swiper-bundle.min.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+{{ partial "header/header.html" . }}
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+	{{ .Content }}
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+{{ partial "footer/footer.html" . }}
+{{ partial "footer/scripts.html" . }}
+
+</body>
+</html>

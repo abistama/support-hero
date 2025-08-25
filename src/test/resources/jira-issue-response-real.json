@@ -1,0 +1,186 @@
+{
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_10010.requestTypePractice",
+  "id": "10018",
+  "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/issue/10018",
+  "key": "TO-19",
+  "fields": {
+    "statuscategorychangedate": "2024-06-17T17:13:57.194+0200",
+    "issuetype": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/issuetype/10001",
+      "id": "10001",
+      "description": "Tasks track small, distinct pieces of work.",
+      "iconUrl": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10318,
+      "entityId": "11f1f192-0c9e-43f0-ae1b-5695fd002eae",
+      "hierarchyLevel": 0
+    },
+    "timespent": null,
+    "customfield_10030": null,
+    "project": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/project/10000",
+      "id": "10000",
+      "key": "TO",
+      "name": "Team-One",
+      "projectTypeKey": "software",
+      "simplified": true,
+      "avatarUrls": {
+        "48x48": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/universal_avatar/view/type/project/avatar/10410",
+        "24x24": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=small",
+        "16x16": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=xsmall",
+        "32x32": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/universal_avatar/view/type/project/avatar/10410?size=medium"
+      }
+    },
+    "customfield_10031": [],
+    "customfield_10032": null,
+    "customfield_10033": null,
+    "fixVersions": [],
+    "customfield_10034": null,
+    "aggregatetimespent": null,
+    "resolution": null,
+    "customfield_10036": null,
+    "customfield_10037": null,
+    "customfield_10027": null,
+    "customfield_10028": null,
+    "customfield_10029": null,
+    "resolutiondate": null,
+    "workratio": -1,
+    "lastViewed": null,
+    "issuerestriction": {
+      "issuerestrictions": {},
+      "shouldDisplay": true
+    },
+    "watches": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/issue/TO-19/watchers",
+      "watchCount": 1,
+      "isWatching": true
+    },
+    "created": "2024-06-17T17:13:56.920+0200",
+    "customfield_10020": null,
+    "customfield_10021": null,
+    "customfield_10022": null,
+    "customfield_10023": null,
+    "priority": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/priority/3",
+      "iconUrl": "https://joaoqalvestest.atlassian.net/images/icons/priorities/medium.svg",
+      "name": "Medium",
+      "id": "3"
+    },
+    "customfield_10024": null,
+    "customfield_10025": null,
+    "customfield_10026": null,
+    "labels": [],
+    "customfield_10016": null,
+    "customfield_10017": null,
+    "customfield_10018": {
+      "hasEpicLinkFieldDependency": false,
+      "showField": false,
+      "nonEditableReason": {
+        "reason": "PLUGIN_LICENSE_ERROR",
+        "message": "The Parent Link is only available to Jira Premium users."
+      }
+    },
+    "customfield_10019": "0|i0003j:",
+    "timeestimate": null,
+    "aggregatetimeoriginalestimate": null,
+    "versions": [],
+    "issuelinks": [],
+    "assignee": null,
+    "updated": "2024-06-17T17:13:56.998+0200",
+    "status": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/status/10000",
+      "description": "",
+      "iconUrl": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/",
+      "name": "To Do",
+      "id": "10000",
+      "statusCategory": {
+        "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+      }
+    },
+    "components": [],
+    "timeoriginalestimate": null,
+    "description": "gogogo",
+    "customfield_10010": null,
+    "customfield_10014": null,
+    "timetracking": {},
+    "customfield_10015": null,
+    "customfield_10005": null,
+    "customfield_10006": null,
+    "customfield_10007": null,
+    "security": null,
+    "customfield_10008": null,
+    "customfield_10009": null,
+    "aggregatetimeestimate": null,
+    "attachment": [],
+    "summary": "gogogo",
+    "creator": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/user?accountId=557058%3Aa1ca2e71-69c1-4a38-89d7-348f09ccfdae",
+      "accountId": "557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae",
+      "emailAddress": "joaoqalves@gmail.com",
+      "avatarUrls": {
+        "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/48",
+        "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/24",
+        "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/16",
+        "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/32"
+      },
+      "displayName": "João Alves",
+      "active": true,
+      "timeZone": "Europe/Madrid",
+      "accountType": "atlassian"
+    },
+    "subtasks": [],
+    "reporter": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/user?accountId=557058%3Aa1ca2e71-69c1-4a38-89d7-348f09ccfdae",
+      "accountId": "557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae",
+      "emailAddress": "joaoqalves@gmail.com",
+      "avatarUrls": {
+        "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/48",
+        "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/24",
+        "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/16",
+        "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:a1ca2e71-69c1-4a38-89d7-348f09ccfdae/1cd50313-e201-448a-88f0-3268b629e57e/32"
+      },
+      "displayName": "João Alves",
+      "active": true,
+      "timeZone": "Europe/Madrid",
+      "accountType": "atlassian"
+    },
+    "aggregateprogress": {
+      "progress": 0,
+      "total": 0
+    },
+    "customfield_10001": null,
+    "customfield_10002": null,
+    "customfield_10003": null,
+    "customfield_10004": null,
+    "customfield_10038": null,
+    "environment": null,
+    "duedate": null,
+    "progress": {
+      "progress": 0,
+      "total": 0
+    },
+    "comment": {
+      "comments": [],
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/issue/10018/comment",
+      "maxResults": 0,
+      "total": 0,
+      "startAt": 0
+    },
+    "votes": {
+      "self": "https://api.atlassian.com/ex/jira/32f5c4dc-c53e-47d0-b5f2-c7cac27fab01/rest/api/2/issue/TO-19/votes",
+      "votes": 0,
+      "hasVoted": false
+    },
+    "worklog": {
+      "startAt": 0,
+      "maxResults": 20,
+      "total": 0,
+      "worklogs": []
+    }
+  }
+}

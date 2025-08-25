@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_extension" author="joaoqalves">
+        <sql>
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        </sql>
+    </changeSet>
+
+    <changeSet id="initial_schema" author="joaoqalves">
+        <createTable tableName="slack_tenant">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="access_token" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expires_in" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refresh_token" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="scopes" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slack_team_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slack_enterprise_id" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="domain" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="slack_tenant" columnNames="slack_team_id"
+                             constraintName="uk_slack_tenant"/>
+
+        <createTable tableName="jira_tenant">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="cloud_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="access_token" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refresh_token" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="expires_in" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="scopes" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="jira_tenant" columnNames="cloud_id" constraintName="uk_jira_tenant"/>
+
+        <createTable tableName="slack_to_jira_tenant">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="slack_tenant_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jira_tenant_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="slack_to_jira_tenant"
+                                 baseColumnNames="slack_tenant_id"
+                                 referencedTableName="slack_tenant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_slack_to_jira_tenant_slack_tenant"/>
+        <addForeignKeyConstraint baseTableName="slack_to_jira_tenant"
+                                 baseColumnNames="jira_tenant_id"
+                                 referencedTableName="jira_tenant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_slack_to_jira_tenant_jira_tenant"/>
+
+        <addUniqueConstraint tableName="slack_to_jira_tenant" columnNames="slack_tenant_id, jira_tenant_id"
+                             constraintName="uk_slack_to_jira_tenant"/>
+
+        <createTable tableName="slack_to_jira_configuration">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="slack_user_or_group_id" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reaction" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="channel_id" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="slack_to_jira_tenant_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="configuration" type="jsonb">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="slack_to_jira_configuration"
+                                 baseColumnNames="slack_to_jira_tenant_id"
+                                 referencedTableName="slack_to_jira_tenant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_slack_to_jira_configuration_slack_to_jira_tenant"/>
+
+        <createIndex indexName="idx_slack_to_jira_configuration_owner" tableName="slack_to_jira_configuration">
+            <column name="owner"/>
+        </createIndex>
+
+        <!-- Create unique index for entries with channel_id as null -->
+        <sql>
+            CREATE UNIQUE INDEX uk_slack_to_jira_configuration_no_channel
+            ON slack_to_jira_configuration(slack_user_or_group_id, reaction)
+            WHERE channel_id IS NULL;
+        </sql>
+
+        <!-- Create unique index for entries with channel_id not null -->
+        <sql>
+            CREATE UNIQUE INDEX uk_slack_to_jira_configuration_with_channel
+            ON slack_to_jira_configuration(slack_user_or_group_id, reaction, channel_id)
+            WHERE channel_id IS NOT NULL;
+        </sql>
+
+    </changeSet>
+
+</databaseChangeLog>

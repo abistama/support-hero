@@ -1,0 +1,384 @@
+{
+  "type": "view_submission",
+  "team": {
+    "id": "T050VAYDD5E",
+    "domain": "joao-test-group"
+  },
+  "user": {
+    "id": "U05084E8G2Y",
+    "username": "joaoqalves",
+    "name": "joaoqalves",
+    "team_id": "T050VAYDD5E"
+  },
+  "api_app_id": "A077RL92308",
+  "token": "pBNLGVq7ddxF2wB36SgdXJxJ",
+  "trigger_id": "7373084778852.5029372455184.64221f14c24cc2b0319bbb321c850f3e",
+  "view": {
+    "id": "V07AWHKLT6W",
+    "team_id": "T050VAYDD5E",
+    "type": "modal",
+    "blocks": [
+      {
+        "type": "section",
+        "block_id": "1vujl",
+        "text": {
+          "type": "mrkdwn",
+          "text": ":wave:+Hi!+Let's+configure+SupportHero",
+          "verbatim": false
+        }
+      },
+      {
+        "type": "divider",
+        "block_id": "RZlqZ"
+      },
+      {
+        "type": "section",
+        "block_id": "project_input_block",
+        "text": {
+          "type": "mrkdwn",
+          "text": ":mailbox:+*Jira+Project*\nWhere+SupportHero+will+create+tickets",
+          "verbatim": false
+        },
+        "accessory": {
+          "type": "static_select",
+          "action_id": "project_input",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select+Jira+Project",
+            "emoji": true
+          },
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "Team-One",
+                "emoji": true
+              },
+              "value": "TO"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "Test+Abistama",
+                "emoji": true
+              },
+              "value": "TABM"
+            }
+          ]
+        }
+      },
+      {
+        "type": "section",
+        "block_id": "reaction_input_block",
+        "text": {
+          "type": "mrkdwn",
+          "text": ":thumbsup:+*Reaction+Emoji*\nOnly+messages+with+this+reaction+create+a+ticket",
+          "verbatim": false
+        },
+        "accessory": {
+          "type": "static_select",
+          "action_id": "reaction_input",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select+the+reaction+emoji",
+            "emoji": true
+          },
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": ":ticket:",
+                "emoji": true
+              },
+              "value": "ticket"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": ":bug:",
+                "emoji": true
+              },
+              "value": "bug"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": ":eyes:",
+                "emoji": true
+              },
+              "value": "eyes"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": ":fire:",
+                "emoji": true
+              },
+              "value": "fire"
+            }
+          ]
+        }
+      },
+      {
+        "type": "section",
+        "block_id": "user_or_group_id_input_block",
+        "text": {
+          "type": "mrkdwn",
+          "text": ":dart:+*User+or+User+Group*\n+Only+them+will+be+able+to+create+a+ticket",
+          "verbatim": false
+        },
+        "accessory": {
+          "type": "users_select",
+          "action_id": "user_or_group_id_input",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select+the+Slack+User+or+User+Group",
+            "emoji": true
+          }
+        }
+      },
+      {
+        "type": "section",
+        "block_id": "jira_issue_type_input_block",
+        "text": {
+          "type": "mrkdwn",
+          "text": ":game_die:+*Jira+issue+type*\n+It+will+create+the+ticket+with+this+type+(e.g.+Task,+Bug)",
+          "verbatim": false
+        },
+        "accessory": {
+          "type": "static_select",
+          "action_id": "jira_issue_type_input",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select+the+issue+type",
+            "emoji": true
+          },
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "Task",
+                "emoji": true
+              },
+              "value": "Task"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "Bug",
+                "emoji": true
+              },
+              "value": "Bug"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "Story",
+                "emoji": true
+              },
+              "value": "Story"
+            }
+          ]
+        }
+      },
+      {
+        "type": "input",
+        "block_id": "feedback_message_input_block",
+        "label": {
+          "type": "plain_text",
+          "text": "Feedback+Message",
+          "emoji": true
+        },
+        "hint": {
+          "type": "plain_text",
+          "text": "You+can+use+variables:+$issue,+$reporter",
+          "emoji": true
+        },
+        "optional": false,
+        "dispatch_action": false,
+        "element": {
+          "type": "plain_text_input",
+          "action_id": "feedback_message_input",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Hi+$reporter!+Thanks+for+reporting+this.+We've+automatically+created+a+Jira+issue+for+you:+$issue.",
+            "emoji": true
+          },
+          "multiline": true,
+          "dispatch_action_config": {
+            "trigger_actions_on": [
+              "on_enter_pressed"
+            ]
+          }
+        }
+      },
+      {
+        "type": "section",
+        "block_id": "send_csat_input_block",
+        "text": {
+          "type": "mrkdwn",
+          "text": ":chart_with_upwards_trend:+*Send+Customer+Satisfaction+survey*\n+It+will+send+a+CSat+survey+to+the+reporter+of+the+issue",
+          "verbatim": false
+        },
+        "accessory": {
+          "type": "radio_buttons",
+          "action_id": "send_csat_input",
+          "initial_option": {
+            "text": {
+              "type": "plain_text",
+              "text": "Yes",
+              "emoji": true
+            },
+            "value": "Yes"
+          },
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "Yes",
+                "emoji": true
+              },
+              "value": "Yes"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "No",
+                "emoji": true
+              },
+              "value": "No"
+            }
+          ]
+        }
+      },
+      {
+        "type": "input",
+        "block_id": "labels_input_block",
+        "label": {
+          "type": "plain_text",
+          "text": "Labels",
+          "emoji": true
+        },
+        "optional": true,
+        "dispatch_action": false,
+        "element": {
+          "type": "plain_text_input",
+          "action_id": "labels_input",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Enter+labels+separated+by+commas+(Optional)",
+            "emoji": true
+          },
+          "dispatch_action_config": {
+            "trigger_actions_on": [
+              "on_enter_pressed"
+            ]
+          }
+        }
+      }
+    ],
+    "private_metadata": "b333e8a7-f02f-496a-8ebf-2446e1b515de",
+    "callback_id": "",
+    "state": {
+      "values": {
+        "project_input_block": {
+          "project_input": {
+            "type": "static_select",
+            "selected_option": {
+              "text": {
+                "type": "plain_text",
+                "text": "Team-One",
+                "emoji": true
+              },
+              "value": "TO"
+            }
+          }
+        },
+        "reaction_input_block": {
+          "reaction_input": {
+            "type": "static_select",
+            "selected_option": {
+              "text": {
+                "type": "plain_text",
+                "text": ":ticket:",
+                "emoji": true
+              },
+              "value": "ticket"
+            }
+          }
+        },
+        "user_or_group_id_input_block": {
+          "user_or_group_id_input": {
+            "type": "users_select",
+            "selected_user": "U05084E8G2Y"
+          }
+        },
+        "jira_issue_type_input_block": {
+          "jira_issue_type_input": {
+            "type": "static_select",
+            "selected_option": {
+              "text": {
+                "type": "plain_text",
+                "text": "Task",
+                "emoji": true
+              },
+              "value": "Task"
+            }
+          }
+        },
+        "feedback_message_input_block": {
+          "feedback_message_input": {
+            "type": "plain_text_input",
+            "value": "Hi #reporter! We'll take care of it"
+          }
+        },
+        "send_csat_input_block": {
+          "send_csat_input": {
+            "type": "radio_buttons",
+            "selected_option": {
+              "text": {
+                "type": "plain_text",
+                "text": "Yes",
+                "emoji": true
+              },
+              "value": "Yes"
+            }
+          }
+        },
+        "labels_input_block": {
+          "labels_input": {
+            "type": "plain_text_input",
+            "value": "bot"
+          }
+        }
+      }
+    },
+    "hash": "1720014763.g2xIebpP",
+    "title": {
+      "type": "plain_text",
+      "text": "SupportHero",
+      "emoji": true
+    },
+    "clear_on_close": false,
+    "notify_on_close": false,
+    "close": {
+      "type": "plain_text",
+      "text": "Cancel",
+      "emoji": true
+    },
+    "submit": {
+      "type": "plain_text",
+      "text": "Submit",
+      "emoji": true
+    },
+    "previous_view_id": null,
+    "root_view_id": "V07AWHKLT6W",
+    "app_id": "A077RL92308",
+    "external_id": "configure_jira_reaction",
+    "app_installed_team_id": "T050VAYDD5E",
+    "bot_id": "B076NBWQE6B"
+  },
+  "response_urls": [],
+  "is_enterprise_install": false,
+  "enterprise": null
+}

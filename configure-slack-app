@@ -1,0 +1,277 @@
+#!/bin/bash -e
+
+# Check if required tools are installed
+check_dependencies() {
+    local missing_deps=()
+    
+    if ! command -v jq &> /dev/null; then
+        missing_deps+=("jq")
+    fi
+    
+    if ! command -v dotenv &> /dev/null; then
+        missing_deps+=("dotenv")
+    fi
+    
+    if [ ${#missing_deps[@]} -gt 0 ]; then
+        echo "❌ Missing required dependencies: ${missing_deps[*]}"
+        echo ""
+        
+        if [[ " ${missing_deps[*]} " =~ " jq " ]]; then
+            echo "To install jq:"
+            echo "  brew install jq (macOS)"
+            echo "  apt install jq (Ubuntu/Debian)"
+            echo "  yum install jq (RHEL/CentOS)"
+            echo "  choco install jq (Windows)"
+            echo "  Or download from: https://stedolan.github.io/jq/download/"
+            echo ""
+        fi
+        
+        if [[ " ${missing_deps[*]} " =~ " dotenv " ]]; then
+            echo "To install dotenv:"
+            echo "  npm install -g dotenv-cli"
+            echo "  yarn global add dotenv-cli"
+            echo "  pip install python-dotenv[cli]"
+            echo "  brew install dotenv (macOS)"
+            echo ""
+        fi
+        
+        exit 1
+    fi
+}
+
+# Load environment variables from .env.properties
+load_env_vars() {
+    if [[ -f ".env.properties" ]]; then
+        echo "📄 Loading environment variables from .env.properties..."
+        
+        # Simple and safe parsing of .env.properties
+        local line_num=0
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            ((line_num++))
+            
+            # Skip empty lines and comments
+            [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+            
+            # Parse key=value format
+            if [[ "$line" =~ ^([A-Z_][A-Z0-9_]*)=(.*)$ ]]; then
+                local key="${BASH_REMATCH[1]}"
+                local value="${BASH_REMATCH[2]}"
+                
+                # Export the variable
+                export "$key=$value"
+            else
+                echo "⚠️  Skipping invalid line $line_num: $line"
+            fi
+        done < .env.properties
+        
+        echo "✅ Environment variables loaded successfully!"
+        
+        # Show which SLACK_REDIRECT_HOST was loaded if any
+        if [[ -n "$SLACK_REDIRECT_HOST" ]]; then
+            echo "🔗 Found SLACK_REDIRECT_HOST: $SLACK_REDIRECT_HOST"
+        fi
+    else
+        echo "⚠️  Warning: .env.properties file not found. Some environment variables may not be available."
+    fi
+}
+
+# Show help
+show_help() {
+    echo "Slack App Manifest Configurator"
+    echo ""
+    echo "Usage: ./configure-slack-app [ENVIRONMENT] [OPTIONS]"
+    echo ""
+    echo "Environments:"
+    echo "  dev      Configure for development environment"
+    echo "  prod     Configure for production environment"
+    echo "  help     Show this help message"
+    echo ""
+    echo "Options:"
+    echo "  --app-name NAME       Override app name (default: environment-specific)"
+    echo "  --bot-name NAME       Override bot display name (default: same as app name)"
+    echo "  --base-url URL        Override base URL (default: environment-specific)"
+    echo "  --output FILE         Output file (default: slack-app-[env]-manifest.json)"
+    echo ""
+    echo "Examples:"
+    echo "  ./configure-slack-app dev"
+    echo "  ./configure-slack-app prod"
+    echo "  ./configure-slack-app dev --app-name \"My Dev App\" --base-url \"https://dev.example.com\""
+    echo "  ./configure-slack-app prod --output \"production-manifest.json\""
+    echo ""
+    echo "Default configurations:"
+    echo "  dev:  App: 'SupportHero Dev',  URL: \$SLACK_REDIRECT_HOST or 'https://localhost:8080'"
+    echo "  prod: App: 'SupportHero',      URL: \$SLACK_REDIRECT_HOST or 'https://supporthero-api.fly.dev'"
+    echo ""
+    echo "Environment variables:"
+    echo "  SLACK_REDIRECT_HOST   Override the base URL for Slack endpoints"
+    echo "                        (loaded from .env.properties if available)"
+}
+
+# Parse command line arguments
+parse_args() {
+    ENVIRONMENT=""
+    APP_NAME=""
+    BOT_NAME=""
+    BASE_URL=""
+    OUTPUT_FILE=""
+    
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            dev|prod)
+                if [[ -n "$ENVIRONMENT" ]]; then
+                    echo "❌ Multiple environments specified. Use only one."
+                    exit 1
+                fi
+                ENVIRONMENT="$1"
+                shift
+                ;;
+            --app-name)
+                APP_NAME="$2"
+                shift 2
+                ;;
+            --bot-name)
+                BOT_NAME="$2"
+                shift 2
+                ;;
+            --base-url)
+                BASE_URL="$2"
+                shift 2
+                ;;
+            --output)
+                OUTPUT_FILE="$2"
+                shift 2
+                ;;
+            help|-h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                echo "❌ Unknown option: $1"
+                echo ""
+                show_help
+                exit 1
+                ;;
+        esac
+    done
+    
+    if [[ -z "$ENVIRONMENT" ]]; then
+        echo "❌ Environment not specified."
+        echo ""
+        show_help
+        exit 1
+    fi
+}
+
+# Set default values based on environment
+set_defaults() {
+    # Set app name defaults
+    case "$ENVIRONMENT" in
+        dev)
+            [[ -z "$APP_NAME" ]] && APP_NAME="SupportHero Dev"
+            [[ -z "$OUTPUT_FILE" ]] && OUTPUT_FILE="slack-app-dev-manifest.json"
+            ;;
+        prod)
+            [[ -z "$APP_NAME" ]] && APP_NAME="SupportHero"
+            [[ -z "$OUTPUT_FILE" ]] && OUTPUT_FILE="slack-app-prod-manifest.json"
+            ;;
+    esac
+    
+    # Set base URL - prioritize command line, then env var, then defaults
+    if [[ -z "$BASE_URL" ]]; then
+        if [[ -n "$SLACK_REDIRECT_HOST" ]]; then
+            BASE_URL="$SLACK_REDIRECT_HOST"
+            echo "🔧 Using SLACK_REDIRECT_HOST from environment: $BASE_URL"
+        else
+            case "$ENVIRONMENT" in
+                dev)
+                    BASE_URL="https://localhost:8080"
+                    echo "🔧 Using default dev URL (SLACK_REDIRECT_HOST not set): $BASE_URL"
+                    ;;
+                prod)
+                    BASE_URL="https://supporthero-api.fly.dev"
+                    echo "🔧 Using default prod URL (SLACK_REDIRECT_HOST not set): $BASE_URL"
+                    ;;
+            esac
+        fi
+    else
+        echo "🔧 Using URL from command line: $BASE_URL"
+    fi
+    
+    # Bot name defaults to app name if not specified
+    [[ -z "$BOT_NAME" ]] && BOT_NAME="$APP_NAME"
+}
+
+# Generate the manifest
+generate_manifest() {
+    echo "🔧 Configuring Slack app manifest for $ENVIRONMENT environment..."
+    echo "   📱 App Name: $APP_NAME"
+    echo "   🤖 Bot Name: $BOT_NAME"
+    echo "   🌐 Base URL: $BASE_URL"
+    echo "   📄 Output: $OUTPUT_FILE"
+    echo ""
+    
+    if [[ ! -f "slack-app-manifest.json" ]]; then
+        echo "❌ Source manifest file 'slack-app-manifest.json' not found."
+        exit 1
+    fi
+    
+    # Use jq to modify the JSON
+    jq --arg app_name "$APP_NAME" \
+       --arg bot_name "$BOT_NAME" \
+       --arg base_url "$BASE_URL" \
+       '
+       .display_information.name = $app_name |
+       .features.bot_user.display_name = $bot_name |
+       .oauth_config.redirect_urls[0] = ($base_url + "/slack/oauth") |
+       .settings.event_subscriptions.request_url = ($base_url + "/slack/events") |
+       .settings.interactivity.request_url = ($base_url + "/slack/events")
+       ' slack-app-manifest.json > "$OUTPUT_FILE"
+    
+    echo "✅ Manifest configured successfully!"
+    echo "   📄 Created: $OUTPUT_FILE"
+    echo ""
+    echo "Next steps:"
+    echo "1. Copy the contents of $OUTPUT_FILE"
+    echo "2. Go to https://api.slack.com/apps"
+    echo "3. Select your app or create a new one"
+    echo "4. Go to 'App Manifest' section"
+    echo "5. Paste the manifest and save"
+    echo ""
+}
+
+# Validate the generated manifest
+validate_manifest() {
+    echo "🔍 Validating generated manifest..."
+    
+    if ! jq empty "$OUTPUT_FILE" 2>/dev/null; then
+        echo "❌ Generated manifest is not valid JSON!"
+        exit 1
+    fi
+    
+    # Check required fields
+    local app_name_check=$(jq -r '.display_information.name' "$OUTPUT_FILE")
+    local bot_name_check=$(jq -r '.features.bot_user.display_name' "$OUTPUT_FILE")
+    local oauth_url_check=$(jq -r '.oauth_config.redirect_urls[0]' "$OUTPUT_FILE")
+    local events_url_check=$(jq -r '.settings.event_subscriptions.request_url' "$OUTPUT_FILE")
+    
+    if [[ "$app_name_check" == "null" || "$bot_name_check" == "null" || 
+          "$oauth_url_check" == "null" || "$events_url_check" == "null" ]]; then
+        echo "❌ Manifest validation failed - missing required fields!"
+        exit 1
+    fi
+    
+    echo "✅ Manifest validation passed!"
+}
+
+# Main script execution
+main() {
+    check_dependencies
+    load_env_vars
+    parse_args "$@"
+    set_defaults
+    generate_manifest
+    validate_manifest
+}
+
+# Run the script
+main "$@"

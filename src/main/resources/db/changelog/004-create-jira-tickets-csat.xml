@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_jira_tickets_csat" author="joaoqalves">
+        <createTable tableName="jira_ticket_csat">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="ticket_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="project_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slack_to_jira_tenant_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="csat_value" type="integer">
+                <constraints nullable="true"/>
+            </column>
+            <column name="send_to" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_reminders" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="next_reminder_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint constraintName="uk_jira_ticket_csat_ticket_key"
+                             tableName="jira_ticket_csat"
+                             columnNames="ticket_key, slack_to_jira_tenant_id"/>
+        <addForeignKeyConstraint constraintName="fk_jira_tickets_csat_slack_to_jira_tenant"
+                                 baseTableName="jira_ticket_csat"
+                                 baseColumnNames="slack_to_jira_tenant_id"
+                                 referencedTableName="slack_to_jira_tenant"
+                                 referencedColumnNames="id"/>
+        <createIndex indexName="idx_jira_ticket_csat_reminders_csat"
+                     tableName="jira_ticket_csat"
+                     unique="false">
+            <column name="number_reminders"/>
+            <column name="csat_value"/>
+        </createIndex>
+        <sql>
+            CREATE INDEX idx_jira_ticket_no_csat ON jira_ticket_csat (number_reminders, csat_value, next_reminder_at) WHERE number_reminders > 0 AND csat_value IS NULL;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

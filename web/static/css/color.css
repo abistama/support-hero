@@ -1,0 +1,140 @@
+
+/* Update below HEX and RGB color code to your primary color for light mode */
+[data-bs-theme=light] {
+  --bs-primary: #f01919 !important;
+  --bs-primary-rgb: 240, 25, 25 !important; 
+  --bs-link-color:#f01919 !important;
+  --bs-link-hover-color:#880505 !important;
+  --bs-link-color-rgb:240, 25, 25 !important;
+  --bs-link-hover-color-rgb: 136, 5, 5;
+  --bs-nav-pills-link-active-bg: #f01919 !important;
+}
+
+/* Update below HEX and RGB color code to your primary color for dark mode */
+[data-bs-theme=dark] {
+  --bs-primary: #f01919 !important;
+  --bs-primary-rgb: 240, 25, 25 !important; 
+  --bs-link-color:#f01919 !important;
+  --bs-link-hover-color:#880505 !important;
+  --bs-link-color-rgb:240, 25, 25 !important;
+  --bs-link-hover-color-rgb: 136, 5, 5;
+  --bs-nav-pills-link-active-bg: #f01919 !important;
+
+  /* --bs-primary: #f0ac19 !important;
+  --bs-primary-rgb: 240, 172, 25  !important; 
+  --bs-link-color:#f0ac19 !important;
+  --bs-link-hover-color:#c48a0b !important;
+  --bs-link-color-rgb: 240, 172, 25 !important;
+  --bs-link-hover-color-rgb: 196, 138, 11;
+  --bs-nav-pills-link-active-bg: #f0ac19 !important; */
+}
+
+
+/* CSS for overriding primary colors */
+.navbar {
+  --bs-navbar-hover-color: var(--bs-primary);
+  --bs-navbar-active-color: var(--bs-primary);
+  }
+
+.navbar-dark {
+  --bs-navbar-hover-color: var(--bs-primary) !important;
+  --bs-navbar-active-color: var(--bs-primary) !important;
+}
+.nav{
+  --bs-nav-link-hover-color: var(--bs-primary);
+}
+.dropdown-menu {
+  --bs-dropdown-link-hover-color: var(--bs-primary) !important;
+  --bs-dropdown-link-active-color: var(--bs-primary) !important;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: var(--bs-link-hover-color);
+  --bs-btn-hover-border-color: var(--bs-link-hover-color);
+  --bs-btn-active-bg: var(--bs-link-hover-color);
+  --bs-btn-active-border-color: var(--bs-link-hover-color);
+  --bs-btn-disabled-bg: var(--bs-primary);
+  --bs-btn-disabled-border-color: var(--bs-primary);
+}
+.btn-link {
+  --bs-btn-color: var(--bs-primary);
+  --bs-link-color: var(--bs-primary);
+  --bs-btn-hover-color: var(--bs-link-hover-color);
+  --bs-btn-active-color: var(--bs-link-hover-color);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: var(--bs-primary);
+  --bs-btn-hover-border-color: var(--bs-primary);
+  --bs-btn-active-bg: var(--bs-primary);
+  --bs-btn-active-border-color: var(--bs-primary);
+  --bs-btn-disabled-color: var(--bs-primary);
+  --bs-btn-disabled-border-color: var(--bs-primary);
+}
+.btn-primary-soft{
+  color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+.btn-primary-soft.active,
+.btn-primary-soft:focus,
+.btn-primary-soft:hover{
+  color: var(--bs-white);
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+.btn-primary-shadow{
+  background-color: var(--bs-primary);
+  box-shadow: 0 0 0 10px rgba(var( --bs-primary-rgb), .4);
+}
+.btn-primary-shadow:hover{
+  background-color: var(--bs-link-color);
+  box-shadow: 0 0 0 10px rgba(var( --bs-primary-rgb), .4);
+}
+.btn-primary-shadow:focus{
+  background-color: var(--bs-link-color);
+  box-shadow: 0 0 0 10px rgba(var( --bs-primary-rgb), .4);
+}
+.btn-primary-shadow.active{
+  background-color: var(--bs-link-color);
+  box-shadow: 0 0 0 10px rgba(var( --bs-primary-rgb), .4);
+}
+
+.fill-primary{
+  fill: var(--bs-primary) !important;
+}
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--bs-primary);
+}
+
+/* .form-select:focus,
+.form-control:focus{
+  border-color: var(--bs-primary);
+} */
+.text-bg-primary{
+  background-color: rgba(var(--bs-primary-rgb), 1) !important;
+}
+.page-item.active .page-link,
+.page-link:hover,
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+/* SVG inline colors */
+
+/* "%23" is the encoding of '#' so place your color code immediately after "%23" in fill attribute. For example, if you want to replace any fill color with red then code will be like:
+fill='%23ff0000' so it interprets like in HEX code: #ff0000; */
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23cc4f07'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23cc4f07'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+ 

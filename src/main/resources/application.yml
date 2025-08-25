@@ -1,0 +1,12 @@
+spring:
+  liquibase:
+    change-log: classpath:/db/master.xml
+
+app:
+  security:
+    encryption:
+      master-key: ${ENCRYPTION_MASTER_KEY:changeme-in-production}
+
+logging:
+  level:
+    ROOT: info

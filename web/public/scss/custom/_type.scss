@@ -1,0 +1,252 @@
+// 
+// type.scss
+// Extended from Bootstrap
+// 
+
+// 
+// Additional style for theme
+//
+
+// Background primary hover
+.bg-primary-hover{
+  &:hover, &.active, &:focus{
+    background-color: var(--bs-primary) !important;
+    color: var(--bs-white);
+    border: 1px solid var(--bs-primary);
+  }
+}
+
+.bg-light-hover:hover {
+  background-color: var(--bs-light);
+}
+
+.border-primary-hover{
+  border: 1px solid transparent;
+  transition: $transition-base;
+  &:hover{
+  border: 1px solid var(--bs-primary) !important;
+  }
+}
+
+// Background overlay. Use with bootstrap bg colors and bg opacity classes like this >> bg-overlay bg-dark bg-opacity-10
+.bg-overlay {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.bg-linear-overlay{
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 10%, rgba(0, 0, 0, 0.5) 59%, rgba(0, 0, 0) 100%),
+}
+
+//
+// Emphasis
+//
+small,
+.small {
+  font-weight: $font-weight-light;
+}
+
+.smaller {
+  font-size: 60%;
+  font-weight: $font-weight-normal;
+}
+
+// dropcap
+.dropcap{
+  font-size: 4em;
+  font-weight: bold;
+  display: block;
+  float: left;
+  margin: .04em .2em 0 0;
+  color: $headings-color;
+  line-height: 1;
+}
+
+// Social media colors
+
+// facebook
+.bg-facebook{
+  background-color: #5d82d1;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#5d82d1, 10%);
+    color: $white;
+  }
+}
+.text-facebook{
+  color: #5d82d1;
+  &:hover{
+    color: shift-color(#5d82d1, 10%);
+  }
+}
+
+// Whatsaap
+.bg-whatsapp{
+  background-color: #25D366;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#25D366, 10%);
+    color: $white;
+  }
+}
+.text-whatsapp{
+  color: #25D366;
+  &:hover{
+    color: shift-color(#25D366, 10%);
+  }
+}
+
+// instagram
+.bg-instagram{
+  background: #c22b72;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#c22b72, 10%);
+    color: $white;
+  }
+}
+.text-instagram{
+  color: #c22b72;
+  &:hover{
+    color: shift-color(#c22b72, 10%);
+  }
+}
+
+// instagram
+.bg-instagram-gradient{
+  background: radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  background: -webkit-radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  color: $white;
+  background-size: 120% 120%;
+  background-position: right bottom;
+  transition: $transition-base;
+  border: 0;
+  &:hover, &:active, &:focus{
+    background: radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    background: -webkit-radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    color: $white;
+    background-size: 100% 100%;
+    transition: $transition-base;
+    background-position: left bottom;
+  }
+}
+.text-instagram-gradient{
+  color: transparent;
+  background: radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  background: -webkit-radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: $transition-base;
+  background-size: 120% 120%;
+  &:hover{
+    color: transparent;
+    background: radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    background: -webkit-radial-gradient(circle at 20% 130%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 100% 100%;
+    transition: $transition-base;
+  }
+}
+
+// google
+.bg-google{
+  background-color: #3c7ff1;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#3c7ff1, 10%);
+    color: $white;
+  }
+}
+.text-google{
+  color: #3c7ff1;
+  &:hover{
+    color: shift-color(#3c7ff1, 10%);
+  }
+}
+.text-google-icon {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+
+// twitter
+.bg-twitter{
+  background-color: #40bff5;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#40bff5, 10%);
+    color: $white;
+  }
+}
+.text-twitter{
+  color: #40bff5;
+  &:hover{
+    color: shift-color(#40bff5, 10%);
+  }
+}
+
+// dribbble
+.bg-dribbble{
+  background-color: #ea4c89;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#ea4c89, 10%);
+    color: $white;
+  }
+}
+.text-dribbble{
+  color: #ea4c89;
+  &:hover{
+    color: shift-color(#ea4c89, 10%);
+  }
+}
+
+// linkedin
+.bg-linkedin{
+  background-color: #238cc8;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#238cc8, 10%);
+    color: $white;
+  }
+}
+.text-linkedin{
+  color: #238cc8;
+  &:hover{
+    color: shift-color(#238cc8, 10%);
+  }
+}
+
+// youtube
+.bg-youtube{
+  background-color: #ff0000;
+  color: $white;
+  border: none;
+  &:hover, &:active, &:focus{
+    background-color: shift-color(#ff0000, 10%);
+    color: $white;
+  }
+}
+
+.text-youtube{
+  color: #ff0000;
+  &:hover{
+    color: shift-color(#ff0000, 10%);
+  }
+}

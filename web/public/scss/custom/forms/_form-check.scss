@@ -1,0 +1,60 @@
+// 
+// form-check.scss
+// Extended from Bootstrap
+// 
+
+// 
+// Additional style for theme
+//
+
+// Cursor pointer
+.form-check {
+  .form-check-input:focus{
+    box-shadow: none;
+  }
+  .form-check-input, .form-check-label  {
+    cursor: pointer;
+  }
+}
+
+// form switch size
+.form-switch {
+  .form-check-input:focus{
+    box-shadow: none;
+  }
+  &.form-check-md{
+    .form-check-input{
+      height: 1.3em;
+      width: 2.4em;
+    }
+  }
+  &.form-check-lg{
+    .form-check-input{
+      height: 2em;
+      width: 4em;
+      margin-top: 0.15em;
+      .form-check-input{
+        width: 3.4em;
+      }
+    }
+  }
+}
+
+.form-check-input.focus-shadow-none:focus{
+  box-shadow: none;
+}
+
+// Radio button size
+.color-check-radio{
+  .form-check-input{
+    width: 1.5em;
+    height: 1.5em;
+    background-image: none;
+    border: 3px solid var(--#{$prefix}body-bg);
+    &:checked{
+      border: 3px solid $white !important;
+      box-shadow: 0 0.125rem 0.25rem rgba(29, 58, 83, 0.30);
+    }
+  }
+
+}

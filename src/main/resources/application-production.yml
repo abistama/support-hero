@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://abistama.flycast:5432/abistama_api?sslmode=disable
+    username: postgres
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  data:
+    redis:
+      host: fly-abistama-api-redis.upstash.io
+      port: 6379
+      password: ${REDIS_PASSWORD}
+
+slack:
+  oauth:
+    client-id: "5029372455184.4999095926294"
+    client-secret: ${SLACK_CLIENT_SECRET}
+    bot-token: ${SLACK_BOT_TOKEN}
+    redirect-uri: "https://abistama-api.fly.dev/slack/oauth"
+    signing-secret: ${SLACK_SIGNING_SECRET}
+
+jira:
+  oauth:
+    client-id: "OR5rwDNFtMMQwLIXGjtWZKgsyjOb1Cbj"
+    client-secret: ${JIRA_CLIENT_SECRET}
+    redirect-uri: "https://abistama-api.fly.dev/jira/oauth"
+    authorization-uri: "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=#{clientId}&scope=offline_access%20write%3Ajira-work%20read%3Ajira-work&redirect_uri=#{redirectUri}&state=#{state}&response_type=code&prompt=consent"
+
+smtp2go:
+  api-key: ${SMTP2GO_API_KEY}
+  sender-email: "contact@youremail.com"
+
+langchain4j:
+  anthropic:
+    chat-model:
+      api-key: ${ANTHROPIC_API_KEY}

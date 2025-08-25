@@ -1,0 +1,32 @@
+// 
+// tables.scss
+// Extended from Bootstrap
+// 
+
+// 
+// Additional styles for theme
+// 
+
+.table td, .table th {
+  white-space: nowrap;
+}
+
+.table-compare td, .table-compare th {
+  white-space: normal;
+}
+
+@media (min-width: 767.98px) {
+  .table-shrink.table td, .table-shrink.table th {
+    white-space: inherit;
+  }
+}
+@media (max-width: 767.98px) {
+  .table-shrink .table-responsive-title{
+    width: 200px;
+    white-space: normal;
+  }
+}
+
+.table .thead-dark{
+  background-color: $gray-800;
+}

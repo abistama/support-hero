@@ -1,0 +1,229 @@
+// 
+// general.scss
+// Theme general elements and helper styling
+
+// GLightbox theme color
+.plyr__control--overlaid, 
+.plyr--audio .plyr__control.plyr__tab-focus, 
+.plyr--audio .plyr__control:hover, 
+.plyr--audio .plyr__control[aria-expanded=true],
+.plyr--video .plyr__control.plyr__tab-focus, 
+.plyr--video .plyr__control:hover, 
+.plyr--video .plyr__control[aria-expanded=true],
+.plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]:before{
+  background: var(--#{$prefix}primary);
+}
+.plyr--full-ui input[type=range]{
+  color: var(--#{$prefix}primary);
+}
+
+/* rtl:raw:
+.glightbox-clean .gclose, .glightbox-modern .gclose{
+  right: auto !important;
+  left: 20px;
+}
+*/
+
+// Back to top
+.back-top {
+  cursor: pointer;
+  position: fixed !important;
+  bottom: 40px;
+  right: 40px;
+  display: block;
+  z-index: 99;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(50%);
+  transition: $transition-base;
+  background: var(--#{$prefix}primary);
+  color: $white;
+  border-radius: 10%;
+  width: 52px;
+  height: 52px;
+  line-height: 52px;
+  text-align: center;
+  &:before{
+    content: "\f176";
+    font-family: $fa-font-family;
+    font-weight: 900;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &:hover{
+    background: var(--bs-link-hover-color);
+    color: $white;
+  }
+  &.back-top-show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .back-top {
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    &:before{
+      font-size: 0.6rem;
+    }
+  }
+}
+@include media-breakpoint-down(sm) {
+  .back-top {
+    display: none;
+  }
+}
+
+// To flip element in RTL
+/* rtl:raw:
+  .rtl-flip {
+    transform: scaleX(-1);
+  }
+  .rtl-flip.bi:before{
+    transform: inherit;
+  }
+*/
+
+// Quick fix for bootstrap font width
+.bi.fa-fw{
+  display: inline-block;
+}
+
+// pre loader
+.preloader {
+  background-color: var(--#{$prefix}body-bg);
+  position: fixed;
+  z-index: 1190;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  .preloader-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.uploadremove {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border: 0;
+  padding: 0;
+  background: var(--bs-danger);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+// Fake password icon 
+.fakepasswordicon { 
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.fakepasswordicon.fa-eye:before {
+  content: "\f06e" !important;
+}
+
+// Container classes
+.inner-container {
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.inner-container-small {
+  max-width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.inner-container.left {
+  margin-left: 0px;
+}
+.inner-container-small.left {
+  margin-left: 0px;
+}
+
+// Search
+.nav-search .dropdown-menu{
+  top: 120%;
+  visibility: hidden;
+  opacity: 0;
+  display: block;
+  transition: $transition-base;
+  width: 300px;
+  left: auto;
+  right: 0;
+}
+.nav-search .dropdown-menu.show{
+  top: 100%;
+  visibility: visible;
+  opacity: 1;
+}
+@include media-breakpoint-down(sm) {
+  .nav-search .dropdown-menu{
+    width: 100%;
+  }
+}
+
+// Step process line
+.step-process > * {
+  position: relative;
+}
+.step-process > *::before {
+  content: "";
+  border: 1px dashed var(--#{$prefix}gray-200);
+  width: 90%;
+  position: absolute;
+  top: 50px;
+  transform: translateX(50%);
+  z-index: -1;
+  display: none;
+}
+@include media-breakpoint-up(lg) {
+  .step-process > *:not(:last-child):before {
+    display: block;
+  }
+}
+
+// View port height responsive
+@include media-breakpoint-down(xl) {
+  .vh-xl-auto{
+    height: auto !important;
+  }
+}
+@include media-breakpoint-down(lg) {
+  .vh-lg-auto{
+    height: auto !important;
+  }
+}
+@include media-breakpoint-down(md) {
+  .vh-md-auto{
+    height: auto !important;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .vh-sm-auto{
+    height: auto !important;
+  }
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create_jira_tickets_tracking" author="joaoqalves">
+        <createTable tableName="jira_ticket_tracking">
+            <column name="id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="jira_issue" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slack_to_jira_tenant_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_issue" type="jsonb">
+                <constraints nullable="false"/>
+            </column>
+            <column name="send_csat" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reported_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint constraintName="uk_jira_ticket_tracking_jira_issue"
+                             tableName="jira_ticket_tracking"
+                             columnNames="jira_issue, slack_to_jira_tenant_id"/>
+        <addForeignKeyConstraint constraintName="fk_jira_tickets_tracking_slack_to_jira_tenant"
+                                 baseTableName="jira_ticket_tracking"
+                                 baseColumnNames="slack_to_jira_tenant_id"
+                                 referencedTableName="slack_to_jira_tenant"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,89 @@
+#!/bin/bash -e
+
+# Check if dotenv is installed
+check_dotenv() {
+    if ! command -v dotenv &> /dev/null; then
+        echo "❌ 'dotenv' is not installed."
+        echo ""
+        echo "To install dotenv, run one of the following:"
+        echo "  npm install -g dotenv-cli"
+        echo "  yarn global add dotenv-cli"
+        echo "  pip install python-dotenv[cli]"
+        echo ""
+        echo "Or install via your package manager:"
+        echo "  brew install dotenv (macOS)"
+        echo "  apt install python3-dotenv (Ubuntu/Debian)"
+        echo ""
+        exit 1
+    fi
+}
+
+# Show help
+show_help() {
+    echo "SupportHero Dependencies Manager"
+    echo ""
+    echo "Usage: ./deps [COMMAND]"
+    echo ""
+    echo "Commands:"
+    echo "  start    Start all dependencies (PostgreSQL, Redis) using Docker Compose"
+    echo "  stop     Stop and remove all dependencies and orphaned containers"
+    echo "  help     Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  ./deps start"
+    echo "  ./deps stop"
+    echo "  ./deps help"
+    echo ""
+    echo "Note: This script requires 'dotenv' to be installed to load environment variables from .env.properties"
+}
+
+# Start dependencies
+start_deps() {
+    echo "🚀 Starting SupportHero dependencies..."
+    check_dotenv
+    
+    if [ ! -f ".env.properties" ]; then
+        echo "⚠️  Warning: .env.properties file not found. Some environment variables may not be loaded."
+    fi
+    
+    dotenv -f .env.properties -o docker compose up -d
+    echo "✅ Dependencies started successfully!"
+    echo ""
+    echo "Services running:"
+    echo "  🐘 PostgreSQL: localhost:5432"
+    echo "  🔴 Redis: localhost:6379"
+    echo ""
+    echo "To stop dependencies, run: ./deps stop"
+}
+
+# Stop dependencies
+stop_deps() {
+    echo "🛑 Stopping SupportHero dependencies..."
+    docker compose down --remove-orphans
+    echo "✅ Dependencies stopped and cleaned up!"
+}
+
+# Main script logic
+case "${1:-}" in
+    "start")
+        start_deps
+        ;;
+    "stop")
+        stop_deps
+        ;;
+    "help"|"-h"|"--help")
+        show_help
+        ;;
+    "")
+        echo "❌ No command specified."
+        echo ""
+        show_help
+        exit 1
+        ;;
+    *)
+        echo "❌ Unknown command: $1"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac

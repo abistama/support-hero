@@ -1,0 +1,365 @@
+// 
+// navbar.scss
+// Extended from Bootstrap
+// 
+
+// 
+// Bootstrap Overrides and Additional style for theme
+// 
+
+
+// `.navbar-expand-*` responsive classes for configuring
+// where your navbar collapses.
+.navbar-expand {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+    
+    // Styling for navbar-expand
+    &#{$infix} {
+
+      // Navbar styling for all screen sizes
+      // Custom dropdown toggle icon
+      .dropdown-toggle:after {
+        content: "\f107";
+        font-family: $fa-font-family;
+        margin-left: 0.35rem;
+        font-weight: 900;
+        font-size: 0.8rem;
+        vertical-align: middle;
+        border: none;
+      }
+
+      // Dropdown link styling
+      .dropdown .dropdown-link{
+        display: block;
+        width: 100%;
+        padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x) !important;
+        clear: both;
+        border-radius: $border-radius;
+        margin-bottom: 0.3rem;
+        font-weight: $font-weight-normal;
+        &:hover,&:focus,&:active{
+          color: var(--#{$prefix}dropdown-link-hover-color);
+          background: var(--#{$prefix}dropdown-link-hover-bg);
+        }
+      }
+
+      // Navbar styling for navbar expand >
+      @include media-breakpoint-up($next) {
+        
+        .navbar-brand .navbar-brand-item {
+          height: $navbar-brand-height;
+          display: block;
+          width: auto;
+        }
+
+        // Custom dropdown toggle icon
+        .dropdown.dropend .dropdown-toggle:after {
+          content: "";
+          font-family: $fa-font-family;
+          right: 1rem;
+          font-size: 0.7rem;
+          line-height: 2.2;
+        }
+        .dropdown.dropstart .dropdown-toggle:before{
+          content: "";
+          margin-right: 0;
+          font-family: $fa-font-family;
+          right: 1rem;
+          font-size: 0.8rem;
+          line-height: 2.2;
+          position: absolute;
+        }
+
+        // Dropdown menu custom size
+        .dropdown-menu-size-md{
+          min-width: 22rem;
+        }
+        .dropdown-menu-size-lg{
+          min-width: 35rem;
+        }
+        .dropdown-menu-size-xl{
+          min-width: 55rem;
+        }
+        //Dropdown menu custom center
+        .dropdown-menu.dropdown-menu-center.dropdown-menu-size-xl {
+          left: -27.5rem;
+        }
+        //Dropdown menu custom center
+        .dropdown-menu.dropdown-menu-center.dropdown-menu-size-lg {
+          left: -17.5rem;
+        }
+
+        // Dropdown hover slide animation
+        .navbar-nav .dropdown > .dropdown-menu{
+          animation-name: slideInUp;
+          animation-duration: 300ms;
+        }
+
+        @keyframes slideInUp {
+          from {
+              transform: translateY(10px);
+          }
+
+          to {
+              transform: translateY(0);
+          }
+        }        
+
+        // Navbar bottom line
+        &.navbar-divider{
+          border-bottom: $border-width $border-style $dropdown-divider-bg;
+        }
+
+        .dropdown-menu .dropdown-toggle:after {
+          position: absolute;
+        }
+
+      }
+
+      // Navbar styling for navbar collapse <
+      @include media-breakpoint-down($next) {
+
+        // Dropdown mega menu on responsive
+        .dropdown-fullwidth {
+          position: relative;
+          .dropdown-menu {
+            margin: 0;
+            max-width: 100%;
+          }
+        }
+        
+        .navbar-brand .navbar-brand-item {
+          height: $navbar-mobile-brand-height;
+        }
+        .navbar-brand {
+          padding: $navbar-mobile-brand-padding-y 0;
+        }
+        .navbar-nav-scroll {
+          max-height: var(--#{$variable-prefix}scroll-height, 65vh);
+        }
+
+        // Navbar collapse in position
+        .navbar-collapse {
+          box-shadow: 0px 10px 30px rgba(83, 88, 93, .4);
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 100%;
+          background: var(--#{$prefix}body-bg);
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+          .navbar-nav .nav-item {
+            border-bottom: 1px solid var(--#{$prefix}border-color);
+            padding: 8px 20px;
+          }
+          .navbar-nav .nav-item .nav-link{
+            padding: 0.25rem 0;
+          }
+        }
+
+        // Dropdown menu size
+        .dropdown-menu-size-md{
+          min-width: 100%;
+        }
+        .dropdown-menu-size-lg{
+          min-width: 100%;
+        }
+        .dropdown-menu-size-xl{
+          min-width: 100%;
+        }
+
+        // Dropdown toggle icon
+        .navbar-collapse .navbar-nav .dropdown-toggle::after {
+          position: absolute;
+          right: 15px;
+        }
+        .navbar-collapse .navbar-nav .dropdown-toggle::before {
+          position: absolute;
+          right: 15px;
+        }
+        .dropdown.dropstart .dropdown-toggle:before {
+          content: "";
+          font-family: $fa-font-family;
+          margin-left: 0.35rem;
+          margin-right: 0;
+          font-weight: 900;
+          font-size: 0.8rem;
+          vertical-align: middle;
+          border: none;
+        }
+
+        //Toggler icon
+        .navbar-toggler {
+          &:focus {
+            box-shadow: none;
+          }
+        }
+
+        //Offcanvas body
+        .offcanvas-body{
+          padding: 1rem 0.875rem;
+        }
+        .offcanvas-body .navbar-nav .nav-item {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          padding: 8px 0;
+        }
+
+        // Dropdown toggle icon
+        .offcanvas-body .navbar-nav .dropdown-toggle::after {
+          position: absolute;
+        }
+
+        // Responsive Dropdown menu design
+        .navbar-nav .dropdown-menu{
+          border: 1px solid var(--bs-border-color);
+          margin-top: 8px;
+          box-shadow: none;
+        }
+
+        // Navbar offcanvas menu padding
+        .navbar-nav.navbar-offcanvas-menu{
+          .nav-item{
+            padding: 0.5rem 0;
+            .nav-link{
+              padding: 0.25rem 0;
+            }
+          }
+          .nav-item > .dropdown-menu {
+            background: transparent;
+            padding: 0;
+            box-shadow: none;
+            border-left: $border-style $border-width $border-color;
+            border-radius: 0;
+            margin-left: 8px;
+          }
+          .nav-item > .dropdown-menu .dropdown-item{
+            &.active, &:hover{
+              background: none !important;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+//Header sticky css
+@include media-breakpoint-up(xl){
+
+  header{
+    animation: fadeInUp .5s;
+  }
+  header.header-sticky-on {
+    position: fixed;
+    z-index: 1040;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--#{$prefix}body-bg);
+    animation: fadeInDown .5s;
+    width: 100%;
+    border-bottom: $border-width solid $border-color;
+  }
+  header.header-sticky-on .navbar-top {
+    display: none !important;
+  }
+  header.header-sticky-on .navbar-brand {
+    padding: $navbar-brand-padding-y-sticky 0;
+  }
+  header.header-sticky-on .navbar-brand .navbar-brand-item {
+    height: $navbar-brand-height-sticky;
+  }
+}
+
+//Animation for fade in down
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// Navbar absolute
+.header-absolute {
+	background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+// Navbar toggler icon X animation
+.navbar-toggler{
+  padding: 10px 10px;
+}
+.navbar-toggler{
+  padding: 10px 10px;
+}
+.navbar-toggler .navbar-toggler-animation {
+  transition: all 0.3s ease-in-out;
+  background-image: none;
+  position: relative;
+  height: 22px;
+  width: 22px;
+  display: inline-block;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+.navbar-toggler .navbar-toggler-animation span {
+  transition: all 0.3s ease-in-out;
+  transform: rotateZ(0deg);
+  height: 2px;
+  background: var(--#{$prefix}navbar-color);
+  display: block;
+  position: absolute;
+  width: 100%;
+  border-radius: 30px;
+}
+.navbar-toggler .navbar-toggler-animation span:nth-child(1) {
+  top: 10%;
+}
+.navbar-toggler .navbar-toggler-animation span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.navbar-toggler .navbar-toggler-animation span:nth-child(3) {
+  bottom: 10%;
+}
+.navbar-toggler[data-bs-toggle=collapse][aria-expanded=true] .navbar-toggler-animation span:nth-child(1) {
+  transform: rotateZ(45deg) translateY(-50%);
+  top: 49%;
+  transform-origin: 50% 0;
+  width: 100%;
+}
+.navbar-toggler[data-bs-toggle=collapse][aria-expanded=true] .navbar-toggler-animation span:nth-child(2) {
+  visibility: hidden;
+  transition: all 0s ease-in-out;
+}
+.navbar-toggler[data-bs-toggle=collapse][aria-expanded=true] .navbar-toggler-animation span:nth-child(3) {
+  transform: rotateZ(-45deg) translateY(-50%);
+  bottom: 42%;
+  transform-origin: 50% 0;
+  width: 100%;
+}

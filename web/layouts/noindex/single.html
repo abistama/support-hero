@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>Abistama — {{ .Title }}</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Abistama {{ .Title }}">
+    <meta name="robots" content="noindex">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/images/favicon.ico">
+	<script defer data-domain="abistama.com" src="https://plausible.io/js/script.hash.outbound-links.js"></script>
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/swiper/swiper-bundle.min.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+{{ partial "header/header.html" . }}
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+	{{ .Content }}
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+{{ partial "footer/footer.html" . }}
+{{ partial "footer/scripts.html" . }}
+
+</body>
+</html>

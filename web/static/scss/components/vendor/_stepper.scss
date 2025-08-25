@@ -1,0 +1,66 @@
+// 
+// stepper.scss
+// Vendor style override and new style added
+
+.stepper-outline {
+
+  .step-trigger:hover{
+    background-color: transparent;
+  }
+
+  .bs-stepper-circle{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    background-color: var(--#{$prefix}light);
+    border: 2px solid var(--#{$prefix}gray-200);
+    color: var(--#{$prefix}gray-200);
+    line-height: 1.8rem;
+  }
+
+  .line{
+    background-color: var(--#{$prefix}gray-200);
+  }
+
+  .bs-stepper-content {
+    padding: 20px;
+  }
+
+  .step.active .bs-stepper-circle{
+    color: var(--#{$prefix}gray-600);
+    border: 2px solid var(--#{$prefix}gray-600);
+    line-height: 1.8rem;
+  }
+
+  .step {
+    .bs-stepper-label {
+      margin: 0;
+    }
+    &.active .bs-stepper-label {
+      color: var(--#{$prefix}primary);
+    }
+  }
+}
+
+.step-trigger {
+  padding: 5px;
+  &:hover {
+    text-decoration: none;
+    background-color: transparent;
+  }
+}
+
+
+@include media-breakpoint-down(md){
+  .stepper-outline .bs-stepper-circle{
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 1.4rem;
+  }
+  .stepper-outline .step.active .bs-stepper-circle{
+    line-height: 1.6rem;
+  }
+  .stepper-outline .bs-stepper-content {
+    padding: 5px;
+  }
+}

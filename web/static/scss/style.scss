@@ -1,0 +1,51 @@
+// Bootstrap variables
+@import "../vendor/bootstrap/scss/functions";
+@import "../vendor/bootstrap/scss/variables";
+@import "../vendor/bootstrap/scss/variables-dark";
+
+// Theme variables
+@import "variables";
+@import "variables-dark";
+
+// User variables
+@import "user-variables";
+
+// Bootstrap core
+@import "../vendor/bootstrap/scss/bootstrap";
+
+// Extended bootstrap utilities
+@import "custom/utilities";
+@import "../vendor/bootstrap/scss/utilities/api";
+
+// Extended bootstrap components
+@import "custom/accordion";
+@import "custom/breadcrumb";
+@import "custom/buttons";
+@import "custom/badge";
+@import "custom/card";
+@import "custom/dropdowns";
+@import "custom/list-group";
+@import "custom/nav";
+@import "custom/navbar";
+@import "custom/pagination";
+@import "custom/progress";
+@import "custom/reboot";
+@import "custom/tables";
+@import "custom/type";
+@import "custom/forms/form-check";
+@import "custom/forms/form-control";
+@import "custom/forms/floating-labels";
+
+// Theme components 
+@import "components/general";
+@import "components/avatar";
+@import "components/mockup";
+@import "components/utilities";
+@import "components/vendor/swiper-slider";
+@import "components/vendor/stepper";
+
+// Theme dark
+@import "dark-mode";
+
+// In this scss you can write your scss/css
+@import "user";

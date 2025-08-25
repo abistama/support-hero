@@ -1,0 +1,272 @@
+// 
+// buttons.scss
+// Extended from Bootstrap
+// 
+
+// 
+// Additional styles for theme
+// 
+
+.btn {
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  outline: 0;
+  margin-bottom: 6px;
+}
+.btn:focus-visible{
+  box-shadow: none !important;
+}
+.input-group .btn{
+  margin-bottom: 0;
+}
+.btn-xs{
+  padding: 0.4rem 0.6rem;
+  font-size: 0.6rem;
+  line-height: 1.2;
+  border-radius: $btn-border-radius-sm;
+}
+
+// button light
+.btn-light {
+  background: var(--#{$prefix}light);
+  border-color: var(--#{$prefix}light);
+  color: var(--#{$prefix}gray-900);
+  &.active, &:active, &:focus, &:hover {
+    background: var(--#{$prefix}gray-200);
+    border-color: var(--#{$prefix}gray-200);
+    color: var(--#{$prefix}gray-900);
+  }
+}
+
+// button white
+.btn-white {
+  background: $white;
+  color: $gray-800;
+  &.active, &:active, &:focus, &:hover {
+    background: $gray-200;
+    color: $gray-800;
+    border-color:  $gray-200;
+  }
+}
+.btn-outline-white {
+  background: transparent;
+  border-color: $white;
+  color: $white;
+  &.active, &:active, &:focus, &:hover {
+    color: $gray-800;
+    background: $white;
+  }
+}
+
+.btn-outline-light{
+  background: transparent;
+  border-color: $gray-400;
+  color: $body-color;
+	&:active, &:hover, &:focus{
+		background: $gray-300;
+		border-color: $gray-300;
+		color: $gray-800;
+	}
+}
+.btn-check:checked + .btn-outline-light{
+  background: $gray-400;
+  border-color: $gray-400;
+  color: $gray-800;
+}
+
+// button round
+.btn-round{
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  padding: 0;
+  text-align: center;
+  i{
+    margin:0; 
+  }
+  // Quick fix for play button centered
+  .fa-play{
+    padding-left: 3px;
+  }
+  &.btn-lg{
+    height: 55px;
+    width: 55px;
+    line-height: 55px;
+  }
+  &.btn-sm{
+    height: 32px;
+    width: 32px;
+    line-height: 30px;
+    i{
+      font-size: .6rem;
+    }
+  }
+  &.btn-xs{
+    height: 25px;
+    width: 25px;
+    line-height: 24px;
+    i{
+      font-size: .6rem;
+    }
+  }
+}
+
+// Quick fix for play button centered in RTL
+/*rtl:raw:
+.btn-round .fa-play{
+  padding-left: 3px;
+  padding-right: 0;
+}
+*/
+
+// button soft
+@mixin button-soft-variant($color, $soft-background: rgba($color, .1)) {
+  color: $color;
+  background-color: $soft-background;
+  &:active, &:hover, &:focus {
+    color: color-contrast($color);
+    background-color: $color;
+    border-color: transparent; 
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-#{$color}-soft {
+    @include button-soft-variant($value);
+  }
+}
+
+// Button primary soft check hover
+.btn-primary-soft-check:hover {
+  background-color: rgba(var(--#{$prefix}primary-rgb), 0.2);
+  border: 1px solid  var(--#{$prefix}primary);
+  color:  var(--#{$prefix}primary);
+}
+.btn-check:active+.btn-primary-soft-check, .btn-check:checked+.btn-primary-soft-check, .btn-primary-soft-check.active, .btn-primary-soft-check:active, .show>.btn-primary-soft-check.dropdown-toggle {
+  background-color: rgba(var(--#{$prefix}primary-rgb), 0.2);
+  color:  var(--#{$prefix}primary);
+  border: 1px solid  var(--#{$prefix}primary) !important;
+}
+.btn-check:focus + .btn, .btn-round-shadow:focus {
+  box-shadow: none;
+}
+
+// Button check
+.btn-check:focus + .btn, .btn-round-shadow:focus {
+  box-shadow: none;
+}
+
+// Button primary check
+.btn-primary-check:hover {
+  background-color: var(--#{$prefix}primary) !important;
+  color: $white !important;
+  border: $border-width solid var(--#{$prefix}primary);
+}
+.btn-check:active + .btn-primary-check, .btn-check:checked + .btn-primary-check, .btn-primary-check.active, .btn-primary-check:active, .show > .btn-primary-check.dropdown-toggle {
+  background-color: var(--#{$prefix}primary);
+  color: $white;
+  border: $border-width solid var(--#{$prefix}primary);
+}
+
+// Button dark hover
+.btn-white-hover:hover{
+  background-color: $white !important;
+  border-color: $white;
+  color: $dark !important;
+}
+
+// Button transition
+.btn-transition {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-transition:focus, .btn-transition:hover {
+  transform: translateY(-0.1875rem);
+}
+
+// Button icon
+.btn-icon {
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: $btn-icon-size;
+  height: $btn-icon-size;
+  padding: 0;
+
+  &.btn-xs {
+    width: $btn-icon-xs-size;
+    height: $btn-icon-xs-size;
+    font-size: $font-size-base * 0.8;
+  }
+
+  &.btn-sm {
+    width: $btn-icon-sm-size;
+    height: $btn-icon-sm-size;
+    font-size: $font-size-base * 0.8;
+  }
+
+  &.btn-lg {
+    width: $btn-icon-lg-size;
+    height: $btn-icon-lg-size;
+    font-size: $font-size-base * 1.4375;
+  }
+
+  &.btn-xl {
+    width: $btn-icon-xl-size;
+    height: $btn-icon-xl-size;
+    font-size: $font-size-base * 1.75;
+  }
+}
+
+// btn ripple
+.btn-ripple {
+  position: relative;
+  overflow: visible;
+}
+
+.btn-ripple:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-color: inherit;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 1;
+  animation-name: rippleanim;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(.4, 0, .3, 1);
+  animation-delay: 1s;
+}
+
+@keyframes rippleanim {
+  0% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(var(--#{$prefix}primary-rgb), 0.9);
+  }
+
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0 15px rgba(var(--#{$prefix}primary-rgb), 0.4);
+  }
+}
+
+@-webkit-keyframes rippleanim {
+  0% {
+    opacity: 1;
+    background: rgba(var(--#{$prefix}primary-rgb), 0.9);
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    background: rgba(var(--#{$prefix}primary-rgb), 0.4);
+    transform: scale(1.5);
+  }
+}

@@ -1,0 +1,115 @@
+---
+description: Project-specific coding standards and best practices for Kotlin and Spring Boot applications.
+globs:
+alwaysApply: true
+---
+
+You are an expert in Kotlin programming, Spring Boot, Spring Framework, Gradle, JUnit/Kotest, and related JVM technologies.
+
+# Background
+
+This is a project called "supporthero" that aims to provide customer support solutions from Slack to Jira.
+
+The idea is to automate and streamline the process of creating a ticket. Imagine your users asking in Slack:
+"Hey, I need help with my account" and upon a reaction, a ticket is created in Jira with all the relevant information.
+
+
+# Main features
+
++ Connect to Jira Cloud
++ Connect to Slack workspace
++ Create Jira tickets from Slack messages
++ Add Slack message thread as comments to Jira tickets
++ Configure a reaction to trigger ticket creation in a Slack channel, for a specific Jira project
++ Customer Satisfaction survey after ticket resolution
+
+# Tech stack
+
++ Kotlin
++ Kotest
++ Spring Boot
++ jooQ
++ Liquibase
++ Gradle with Kotlin DSL
++ Slack API
++ Jira API
++ Docker
++ PostgreSQL
++ Redis
+
+# Deployment
+
+Currently, I deploy to fly.io using their free tier. The deployment is done using Docker and a simple Dockerfile.
+
+Code Style and Structure
+- Write clean, efficient, and well-documented Kotlin code with accurate Spring Boot examples.
+- Use Spring Boot best practices and conventions throughout your code.
+- Implement RESTful API design patterns when creating web services.
+- Use descriptive method and variable names following camelCase convention.
+- The structure uses _use case-based_ packages (e.g., com.example.project.feature), not layers (e.g., com.example.project.controller, com.example.project.service).
+
+Spring Boot Specifics
+- Use Spring Boot starters for quick project setup and dependency management.
+- Implement proper use of annotations (e.g., @SpringBootApplication, @RestController).
+- Initialize the beans by hand, using @Bean methods in @Configuration classes, rather than using component scanning with @Component, @Service, or @Repository.
+- Utilize Spring Boot's auto-configuration features effectively.
+- Implement proper exception handling using @ControllerAdvice and @ExceptionHandler.
+
+Naming Conventions
+- Use PascalCase for class names (e.g., UserController, OrderService).
+- Use camelCase for method and variable names (e.g., findUserById, isOrderValid).
+- Use ALL_CAPS for constants (e.g., MAX_RETRY_ATTEMPTS, DEFAULT_PAGE_SIZE).
+
+Spring Boot Usage
+- Use Java 17 or later features when applicable (e.g., records, sealed classes, pattern matching).
+- Leverage Spring Boot 3.x features and best practices.
+
+Configuration and Properties
+- Use application.properties or application.yml for configuration.
+- Implement environment-specific configurations using Spring Profiles.
+- Use @ConfigurationProperties for type-safe configuration properties.
+
+Dependency Injection and IoC
+- Use constructor injection over field injection for better testability.
+- Leverage Spring's IoC container for managing bean lifecycles.
+
+Testing
+- Write unit tests using Kotest and Spring Boot Test.
+- Use MockMvc for testing web layers.
+- Implement integration tests using @SpringBootTest.
+
+Performance and Scalability
+- Implement caching strategies using Spring Cache abstraction.
+- Use async processing with @Async for non-blocking operations.
+- Implement proper database indexing and query optimization.
+
+Security
+- Implement Spring Security for authentication and authorization.
+- Use proper password encoding (e.g., BCrypt).
+- Implement CORS configuration when necessary.
+
+Logging and Monitoring
+- Use SLF4J with Logback for logging.
+- Implement proper log levels (ERROR, WARN, INFO, DEBUG).
+- Use Spring Boot Actuator for application monitoring and metrics.
+
+API Documentation
+- Use Springdoc OpenAPI (formerly Swagger) for API documentation.
+
+Data Access
+- Use jooQ for type-safe SQL query construction.
+- Follow repository pattern for data access layers.
+- Implement proper entity relationships and cascading.
+- Use database migrations with Liquibase.
+
+Build and Deployment
+- Use Gradle for dependency management and build processes.
+- Implement proper profiles for different environments (dev, test, prod).
+- Use Docker for containerization
+
+Follow best practices for:
+- RESTful API design (proper use of HTTP methods, status codes, etc.).
+- Microservices architecture (if applicable).
+- Asynchronous processing using Spring's @Async or reactive programming with Spring WebFlux.
+
+Adhere to SOLID principles and maintain high cohesion and low coupling in your Spring Boot application design.

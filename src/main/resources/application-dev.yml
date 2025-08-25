@@ -1,0 +1,39 @@
+spring:
+  config:
+    import:
+        - file:.env.properties
+  datasource:
+    url: jdbc:postgresql://localhost:5432/supporthero
+    username: postgres
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ${REDIS_PASSWORD}
+
+slack:
+  oauth:
+    client-id: "5029372455184.7263689071008"
+    client-secret: ${SLACK_CLIENT_SECRET}
+    bot-token: ${SLACK_BOT_TOKEN}
+    redirect-uri: "${SLACK_REDIRECT_HOST}/slack/oauth"
+    signing-secret: ${SLACK_SIGNING_SECRET}
+
+jira:
+  oauth:
+    client-id: "ZoOAofaNsUzc55Yetax04EsrmU3DlB5P"
+    client-secret: ${JIRA_CLIENT_SECRET}
+    redirect-uri: "http://localhost:8080/jira/oauth"
+    authorization-uri: "https://auth.atlassian.com/authorize?audience=api.atlassian.com&client_id=#{clientId}&scope=offline_access%20write%3Ajira-work%20read%3Ajira-work&redirect_uri=#{redirectUri}&state=#{state}&response_type=code&prompt=consent"
+
+smtp2go:
+    api-key: ${SMTP2GO_API_KEY}
+    sender-email: "contact@youremail.com"
+
+langchain4j:
+  anthropic:
+    chat-model:
+      model-name: "claude-3-haiku-20240307"
+      api-key: ${ANTHROPIC_API_KEY}

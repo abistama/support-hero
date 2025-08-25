@@ -1,0 +1,66 @@
+{
+  "display_information": {
+    "name": "SupportHero",
+    "description": "From Slack to Jira, support internal users where they are!",
+    "background_color": "#c55100",
+    "long_description": "Tired of \"can you create me a ticket?\" when people ask a question on Slack? SupportHero is your support companion that removes friction for users who request support and keeps the processes for the teams that provide support."
+  },
+  "features": {
+    "app_home": {
+      "home_tab_enabled": true,
+      "messages_tab_enabled": true,
+      "messages_tab_read_only_enabled": true
+    },
+    "bot_user": {
+      "display_name": "SupportHero",
+      "always_online": false
+    },
+    "shortcuts": [
+      {
+        "name": "Configure new reaction",
+        "type": "global",
+        "callback_id": "configure_jira_reaction",
+        "description": "Configure a new reaction and link it to a Jira project"
+      },
+      {
+        "name": "Get configured reactions",
+        "type": "global",
+        "callback_id": "get_configured_jira_reactions",
+        "description": "Get the current configured reactions and relationship to Jira projects"
+      }
+    ]
+  },
+  "oauth_config": {
+    "redirect_urls": [
+      "https://supporthero-api.fly.dev/slack/oauth"
+    ],
+    "scopes": {
+      "bot": [
+        "channels:history",
+        "chat:write",
+        "commands",
+        "im:write",
+        "reactions:read",
+        "usergroups:read",
+        "users:read",
+        "users:read.email",
+        "users.profile:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "request_url": "https://supporthero-api.fly.dev/slack/events",
+      "bot_events": [
+        "reaction_added"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true,
+      "request_url": "https://supporthero-api.fly.dev/slack/events"
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": false,
+    "token_rotation_enabled": true
+  }
+}

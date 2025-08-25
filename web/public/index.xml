@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abistama — User support that doesn&#39;t suck!</title>
+    <link>https://abistama.com/</link>
+    <description>Recent content on Abistama — User support that doesn&#39;t suck!</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://abistama.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About us</title>
+      <link>https://abistama.com/about/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://abistama.com/about/</guid>
+      <description>🤩 What Drives Us About Abistama We&#39;re all about making your work life a whole lot easier and a bit more fun. We&#39;re a small but mighty team of tech enthusiasts, passionate about creating seamless integrations and innovative solutions for your favorite tools like Slack and Jira.&#xA;Simple Solutions We create tools that solve real problems. Abistama turns Slack reactions into Jira tickets, making project management effortless.&#xA;User-Driven Our users&#39; needs guide our development.</description>
+    </item>
+    <item>
+      <title>Pricing</title>
+      <link>https://abistama.com/pricing/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://abistama.com/pricing/</guid>
+      <description>Choose the right plan for your business Two simple plans, each with a 30-day free trial. No credit card required.&#xA;Monthly Yearly 10% save Recommended Business Plan 99€ /month&#xA;up to 100 users Quick look at all the features Automatically create tickets from Slack 100 credits to summarize threads with AI 10 Jira projects Customer Satisfaction and statistics Up to 100 users 24/7 Email support Get started Enterprise plan 149€ /month</description>
+    </item>
+    <item>
+      <title>Privacy Policy</title>
+      <link>https://abistama.com/privacy/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://abistama.com/privacy/</guid>
+      <description>Privacy Policy Last update on July 2024&#xA;Introduction Abistama Solutions OÜ (&#34;we&#34;, &#34;our&#34;, or &#34;us&#34;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Slack application (&#34;Abistama&#34; or &#34;the Application&#34;).&#xA;If you have any questions or concerns about these terms, please contact us at contact@abistama.com. Your use of our website is also governed by our Privacy Policy.</description>
+    </item>
+    <item>
+      <title>Terms of Service</title>
+      <link>https://abistama.com/terms/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://abistama.com/terms/</guid>
+      <description>Terms of Service Last update on July, 9th 2024&#xA;Terms of Service These Terms of Service are a contract between you and Abistama Solutions OÜ (referred to as &#34;Abistama&#34;). By using the Services of Abistama on Slack or any other applications that give access to Abistama, you agree to be bound by the following Terms of Use.&#xA;If a user violates any of the terms outlined below, we reserve the right to cancel accounts or bar access to accounts without notice.</description>
+    </item>
+    <item>
+      <title>Your Jira Cloud is ready</title>
+      <link>https://abistama.com/jira-ok/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://abistama.com/jira-ok/</guid>
+      <description>Your Jira Cloud is now linked to Abistama! You can now configure it in your Slack, in the &#34;Abistama&#34; application.</description>
+    </item>
+    <item>
+      <title>Your Slack is ready</title>
+      <link>https://abistama.com/slack-ok/</link>
+      <pubDate>Tue, 09 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://abistama.com/slack-ok/</guid>
+      <description> Your Slack is ready to use Abistama! </description>
+    </item>
+  </channel>
+</rss>
